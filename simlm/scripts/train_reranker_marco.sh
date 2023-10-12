@@ -17,8 +17,8 @@ mkdir -p "${OUTPUT_DIR}"
 
 # For electra-large, learning rate > 1e-5 will lead to instability empirically
 PROC_PER_NODE=$(nvidia-smi --list-gpus | wc -l)
-# python -u -m torch.distributed.launch --nproc_per_node ${PROC_PER_NODE} src/train_cross_encoder.py \
-accelerate launch src/train_cross_encoder.py \
+python -u -m torch.distributed.launch --nproc_per_node 1 src/train_cross_encoder.py \
+# accelerate launch src/train_cross_encoder.py \
 # deepspeed src/train_cross_encoder.py --deepspeed ds_config.json \
     --model_name_or_path google/electra-base-discriminator \
     --per_device_train_batch_size 8 \
