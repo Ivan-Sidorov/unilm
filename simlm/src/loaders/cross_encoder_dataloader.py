@@ -18,7 +18,7 @@ class CrossEncoderDataLoader:
         self.negative_size = args.train_n_passages - 1
         assert self.negative_size > 0
         self.tokenizer = tokenizer
-        corpus_path = os.path.join(args.data_dir, 'passages.jsonl.gz')
+        corpus_path = os.path.join(args.data_dir, 'passages.jsonl')
         self.corpus: Dataset = load_dataset('json', data_files=corpus_path)['train']
         self.train_dataset, self.eval_dataset = self._get_transformed_datasets()
 
